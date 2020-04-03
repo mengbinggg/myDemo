@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义模块化</title>
+</head>
+<body>
+<script>
+    var myModule = (function(){
+        let modules = {};
+        function define(moduleName, relyModules, action) {
+            if(arguments.length == 2) {
+                action = relyModules;
+                relyModules = [];
+            }
+
+            relyModules.forEach((item, index) => {
+                relyModules[index] = modules[item];
+            });
+            modules[moduleName] = action.apply(null, relyModules);
+        }
+
+        return { define };
+    })();
+
+    myModule.define('math', function() {
+        function add(a, b) {
+            return a + b;
+        };
+        function reduce(a, b) {
+            return a - b;
+        }
+        return { add, reduce }
+    });
+
+    myModule.define('cal', ['math'], function(math) {
+        function cal(a, b, c) {
+            let result = math.reduce(math.add(a, b), c);
+            return result;
+        };
+        return { cal }
+    });
+
+    myModule.define('test', ['math', 'cal'], function(math, cal) {
+        console.log(cal.cal(1, 2, 3));
+        console.log(math.add(1, 2));
+    });
+</script>
+</body>
+</html>

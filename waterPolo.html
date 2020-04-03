@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.contaniner{
+		border: 2px solid #ddd;
+		font-size: 0px;
+		position: relative;
+		height: 200px;
+		width: 200px;
+		margin: 100px auto;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+	div:not(.contaniner){
+		width: 200%;
+		height: 200%;
+		background: #94e0ec;
+		position: absolute;
+		top: 40%;
+		left: -50%;
+		border-radius: 33%;
+		animation: move linear infinite;
+	}
+
+	#div1{
+		animation-duration: 12s;
+	}
+	#div2{
+		animation-duration: 15s;
+		background: #5cdbef;
+	}
+	#div3{
+		animation-duration: 10s;
+		background: #0ad3f3;
+	}
+
+	@keyframes move{
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+</style>
+</head>
+<body>
+	<div class="contaniner">
+		<div id="div1"></div>
+		<div id="div2"></div>
+		<div id="div3"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义步骤条</title>
+    <link rel="stylesheet" type="text/css" href="./step.css">
+    <script type="text/javascript" src="../common/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="./jquery.step.js"></script>
+</head>
+<body>
+	<div style="margin: 200px;">
+		<div id="step"></div>
+    </div>
+    <div style="text-align: center;">
+        <button onclick="lastStep()">上一步</button>
+        <button onclick="nextStep()">下一步</button>
+    </div>
+</body>
+<script type="text/javascript">
+    let step;
+
+    $(function() {
+        step = $("#step").initStep().clickNode(2);
+    });
+    
+    function lastStep() {
+        step.clickLastNode();
+    }
+    
+    function nextStep() {
+        step.clickNextNode();
+    }
+</script>
+</html>

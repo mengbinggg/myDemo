@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件管理</title>
+</head>
+<body>
+    <h3>文件上传及预览</h3>
+    <div>
+        <img id="img" src="#">
+        <input type="file">
+    </div>
+
+    <h3>下载base64格式的文件</h3>
+    <button onclick="downlownBase64File()">下载</button>
+</body>
+<script>
+    let fileName, base64; 
+
+    let fileDom = document.querySelector('input[type=file]');
+    fileDom.addEventListener('change', e => {
+        let file = e.target.files[0];
+        fileName = file.name.split(".")[0];
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = function(e) {
+            base64 = e.target.result;
+            
+            let img = document.querySelector("#img");
+            img.src = e.target.result;
+            img.style.display = 'inline-block';
+        }
+    });
+
+    function downlownBase64File() {
+        let myBlob = base64ToBlob(base64);
+        let url = URL.createObjectURL(myBlob);
+		downloadFile(url, fileName);
+    }
+
+    // 将base64文件转为blob格式
+    function base64ToBlob(base64) {
+        let arr = base64.split(',');
+        let mime = arr[0].match(/:(.*?);/)[1];
+        let	bstr = atob(arr[1]);
+        let n = bstr.length;
+        let u8arr = new Uint8Array(n);
+        while (n--) {
+            u8arr[n] = bstr.charCodeAt(n);
+        }
+        return new Blob([u8arr], { type: mime });
+    }
+
+    // 下载文件
+    function downloadFile(url, fileName) {
+        let a = document.createElement("a");
+        a.setAttribute("href",url);
+        a.setAttribute("download", fileName);
+        a.setAttribute("target", "_blank");
+        let clickEvent = document.createEvent("MouseEvents");
+        clickEvent.initEvent("click", true, true);  
+        a.dispatchEvent(clickEvent);
+    }
+</script>
+<style>
+    #img {
+        width: 100px;
+        height: 100px;
+        display: none;
+    }
+</style>
+</html>

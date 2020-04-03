@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tip小工具</title><!-- 
+	<script type="text/javascript" src="js/jqeury-1.10.2.min.js"></script> -->
+	<style type="text/css">
+	a{
+		text-decoration: none;
+		position: relative;
+	}
+	a:hover{
+		cursor: pointer;
+	}
+	.centent{
+		width: 600px;
+		margin: 100px auto;
+		border: 2px solid #ccc;
+		border-radius: 10px;
+		box-shadow: 0 0 10px 5px rgba(66,66,65,0.4);
+		padding: 5px;
+	}
+	.tipBox{
+		background-color: #fff;
+		border: 1px solid #f7931e;
+		border-radius: 5px;
+		font-size: 12px;
+		text-align: center;
+		position: absolute;
+	}
+</style>
+</head>
+<body>
+	<div class="centent">
+		<h1>江苏盐城爆炸事故已造成6死30伤</h1>
+		<h2>【截至下午7：00，事故已造成死亡6人，重伤30人】</h2>
+		<p>据@盐城发布，3月21日下午14:48左右，位于响水县生态化工园区的<a id="unit" href="javascript:void(0)">天嘉宜化工有限公司</a>发生爆炸。</p>
+		<p>事故发生后，江苏省、盐城市、响水县立即启动应急预案，相关人员第一时间赶赴现场，开展事故救援、秩序维护等工作。截至下午7：00，确认事故已造成死亡6人，重伤30人，另有部分群众不同程度轻伤。目前，现场救援还在继续进行，医卫部门正在全力救治伤员，环保部门正在进行环境监测。事故原因正在调查。后续情况将及时发布。（人民日报客户端记者 王继亮）</p>
+	</div>
+</body>
+<script type="text/javascript">
+
+	function getEl(id){
+		return document.getElementById(id);
+	}
+
+	//显示提示框
+	function showTip(obj, id, _html, width, height ){
+		var tip = getEl(id);
+		if(tip){
+			tip.style.display = "block";
+		}else{
+			var tipBox = document.createElement("div");
+			tipBox.id = id;
+			tipBox.className = "tipBox";
+			tipBox.innerHTML = _html;
+			tipBox.style.width = width+"px";
+			obj.append(tipBox);
+		}
+
+		obj.onmouseleave=function(){
+			getEl(id).style.display = "none";
+		}
+	}
+
+
+	getEl("unit").onmouseenter=function(e){
+		showTip(this,"unitTip","江苏天嘉宜化工有限公司于2007年04月05日在响水县市场监督管理局登记成立，法定代表人陶在明",100,50);
+	}
+</script>
+</html>

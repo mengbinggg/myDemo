@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>实现apply函数</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//自定义call函数
+	Function.prototype.myApply = function(context) {
+		//判断被调用对象是否为函数
+		if (typeof this != 'function') {
+			throw new TypeError("is not a function!");
+		}
+
+		//处理调用者（若调用者为空则指向window）
+		context = context || window;
+		context.fn = this;
+
+		//获取参数
+		var arg = arguments[1];
+
+		var result;
+		if (arg) {
+			result = context.fn(...arg);
+		}else{
+			result = context.fn();
+		}
+		delete context.fn;
+
+		return result;
+	};
+
+	//调用
+	function Person(name,age){
+		this.name = name;
+		this.age = age;
+	}
+
+	var p = new Person("张三","男");
+
+	function say(a, b){
+		return this.name + " say: " + a + " and " + b ;
+	}
+	console.log(say("hi", "hello"));  // say: hi and hello
+	console.log(say.myApply(p, "hi", "hello"));  //张三 say: hi and hello
+</script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js函数的几种写法</title>
+
+	<script type="text/javascript">
+		window.onload=function(){
+
+			//1. 常规写法
+			function fun1(){
+				alert("我是常规写法");
+			}
+			//fun1();
+
+
+
+			//2. 匿名函数
+			var fun2=function(){
+				alert("我是匿名函数");
+			}
+			//fun2();
+
+
+
+			//3. json对象
+			var obj={
+				fun3: function(){
+					alert("我是json对象");
+				}
+			}
+			//obj.fun3();
+
+
+
+			//4. 构造函数式（在构造函数中给对象添加方法）
+			var Obj1=function(){};
+			Obj1.prototype.fun4=function(){
+				alert("我是构造函数式");
+			}
+			var obj1=new Obj1();
+			//obj1.fun4();
+
+			var Obj2=function(){};
+			Obj2.prototype={
+				fun5: function(){
+					alert("fun5");
+				},
+				fun6: function(){
+					alert("fun6");
+				}
+			}
+			var obj2=new Obj2();
+			obj2.fun5();
+			obj2.fun6();
+
+
+		}
+	</script>
+</head>
+<body>
+</body>
+</html>

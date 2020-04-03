@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手写promise</title>
+</head>
+<body>
+    <script src="./MPromise.js"></script>
+    <script>
+        let p = new MPromise((resolve, reject) => {
+            // resolve("成功啦");
+            // reject("失败了");
+            setTimeout(()=>{
+                resolve("异步成功啦");
+            }, 1000);
+        });
+
+        p.then(res => {
+            console.log("成功回调：" + res);
+        }, err => {
+            console.log("失败回调：" + err);
+        });
+    </script>
+</body>
+</html>
