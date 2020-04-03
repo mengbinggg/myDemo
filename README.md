@@ -13,7 +13,7 @@
 5. waterPolo.html：3d水球效果
 6. cube.html：3d方块效果
 7. text.html：文字首行首字效果
-8. fileMsg.html：文件上传预览、下载base64类型的文件xxxx
+8. fileMsg.html：文件上传预览、下载base64类型的文件
 
 
 ##### 插件
