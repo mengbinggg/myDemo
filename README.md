@@ -19,6 +19,7 @@
 ##### 插件
 1. toolTip.html：消息提示框
 2. step：自定义步骤条
+3. mDrawer: 自定义抽屉（详见：https://www.cnblogs.com/mengbing/p/14205348.html）
 
 
 ##### 手写源码
