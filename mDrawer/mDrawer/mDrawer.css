@@ -1,0 +1,79 @@
+.drawer {
+	height: 0%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+.drawer.active {
+	height: 100%;
+}
+.drawer-mask {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    filter: alpha(opacity=45);
+    transition: opacity .3s linear;
+}
+.drawer-mask-show {
+    background-color: rgba(0,0,0,.45);
+}
+.drawer.active .drawer-mask {
+	opacity: 1;
+}
+.drawer-content {
+	height: 100%;
+	background-color: #fff;
+	box-shadow: none;
+	transition: transform .3s cubic-bezier(.7,.3,.1,1), box-shadow .3s cubic-bezier(.7,.3,.1,1);
+	position: absolute;
+	top: 0;
+}
+.drawer-content.left {
+	transform: translateX(-100%);
+	box-shadow: 2px 0 8px rgba(0,0,0,.15);
+}
+.drawer-content.right {
+	right: 0;
+	transform: translateX(100%);
+	box-shadow: -2px 0 8px rgba(0,0,0,.15);
+}
+.drawer.active .drawer-content{
+	transform: none;
+}
+.drawer-content-header {
+	height: 55px;
+    line-height: 55px;
+	border-bottom: 1px solid #e8e8e8;
+}
+.drawer-content-title {
+	color: rgba(0,0,0,.85);
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 20px;
+}
+.drawer-close {
+	position: absolute;
+    top: 0;		
+    right: 20px;
+    font-size: 22px;
+    cursor: pointer;
+}
+.drawer-content-body {
+	padding: 24px;
+    max-height: calc(100% - 104px);
+    overflow: auto;
+}
+.drawer-content-body::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: hsla(0,0%,100%,0);
+}
+.drawer-content-body::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background-color: #cfd6dd;
+}
